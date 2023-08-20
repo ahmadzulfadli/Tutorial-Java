@@ -1,6 +1,7 @@
 package com.v2;
 
-class Player{
+class Player
+{
     private String name;
     private int baseHealt;
     private int baseAttack;
@@ -91,25 +92,31 @@ class Weapon{
         this.attackPower = attack;
     }
     public int getAttack(){
-        return this.attackPower;
+        return this.durability();
+    }
+    private int durability(){
+        return this.attackPower - (this.attackPower * 5 / 100);
     }
 }
 class Armor{
     private String name;
     private int strength;
-    private int health;
+    private int healthArmor;
 
-    public Armor(String name, int strength, int health){
+    public Armor(String name, int strength, int healthArmor){
         this.name = name;
         this.strength = strength;
-        this.health = health;
+        this.healthArmor = healthArmor;
     }
 
     public int getDefencePower(){
-        return this.strength * 10 + this.health;
+        return this.strength * 10 + this.durability();
     }
     public int getAddHealth(){
         return this.strength * 2;
+    }
+    private int durability(){
+        return this.healthArmor -= 5;
     }
 }
 
@@ -119,7 +126,7 @@ public class Main {
         Weapon weapon1 = new Weapon("Pedang",10);
         Weapon weapon2 = new Weapon("Pisau",10);
 
-        Armor armor1 = new Armor("Tameng",7,100);
+        Armor armor1 = new Armor("Tameng",10,100);
 
         Player player1 = new Player("Joko");
         player1.setWeapon(weapon1);
@@ -138,7 +145,6 @@ public class Main {
                 System.out.println("---------Game Play---------");
                 isFirstAttack =false;
             }
-            player1.attack(player2);
             player1.attack(player2);
             if(!player2.getIsAlive()){
                 System.out.println(player2.getName() + " is defeated by " + player1.getName());
