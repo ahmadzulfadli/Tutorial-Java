@@ -3,7 +3,6 @@ package com.atm;
 import com.auth.Authentications;
 
 class Atm {
-
     public static void main(String[] args){
         Account client1 = new Account("Joni","0812665", 2000);
         //client1.showBalance();
